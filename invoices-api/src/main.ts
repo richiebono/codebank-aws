@@ -3,6 +3,7 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 import { EntityNotFoundExceptionFilter } from './exception-filters/entity-not-found.exception-filter';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -32,6 +33,15 @@ async function bootstrap() {
       },
     },
   });
+
+  const config = new DocumentBuilder()
+    .setTitle('Invoices')
+    .setDescription('The Invoice API')
+    .setVersion('1.0')
+    .addTag('invoice')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   await app.startAllMicroservicesAsync();
   await app.listen(3000);
