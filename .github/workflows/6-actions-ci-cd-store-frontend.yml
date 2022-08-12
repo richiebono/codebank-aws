@@ -1,4 +1,4 @@
-name: "6 - Build Store Frontend"
+name: "4 - Build Store API"
 on:
   workflow_run:
     workflows: ["5 - Build Invoice Frontend"]
