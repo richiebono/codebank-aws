@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codebank-invoices-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codebank-invoices-frontend
+  template:
+    metadata:
+      labels:
+        app: codebank-invoices-frontend
+    spec:
+      containers:
+        - name: codebank-invoices-frontend
+          image: richiebono/imersao3-codebank-invoices-frontend:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: codebank-invoices-frontend-volume
+              mountPath: /home/node/app/.env
+              subPath: .env
+      volumes:
+        - name: codebank-invoices-frontend-volume
+          configMap:
+            name: codebank-invoices-frontend-conf
+            items:
+              - key: env
+                path: .env
+          
+        

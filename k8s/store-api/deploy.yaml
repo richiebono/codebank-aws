@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: codebank-store-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: codebank-store-api
+  template:
+    metadata:
+      labels:
+        app: codebank-store-api
+    spec:
+      containers:
+        - name: codebank-store-api
+          image: richiebono/imersao3-codebank-store-api:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: codebank-store-api-volume
+              mountPath: /home/node/app/.env
+              subPath: .env
+      volumes:
+        - name: codebank-store-api-volume
+          configMap:
+            name: codebank-store-api-conf
+            items:
+              - key: env
+                path: .env
+          
+        
