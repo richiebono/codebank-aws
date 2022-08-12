@@ -1,7 +1,7 @@
-name: Build Store API
+name: "4 - Build Store API"
 on:
   workflow_run:
-    workflows: ["Build Invoice API"]
+    workflows: ["3 - Build Invoice API"]
     branches: [main]
     types: 
       - completed
