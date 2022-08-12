@@ -1,4 +1,4 @@
-name: Provisioning K8S Cluster using Terraform
+name: "0 - Provisioning K8S Cluster using Terraform"
 on:
     # Run this script manually in case there is not a cluster created
      workflow_dispatch:        
