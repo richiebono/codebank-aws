@@ -1,4 +1,4 @@
-name: "4 - Build Store API"
+name: "6 - Build Store Frontend"
 on:
   workflow_run:
     workflows: ["5 - Build Invoice Frontend"]
@@ -81,4 +81,6 @@ jobs:
             kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/configmap.yaml
             kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/deploy.yaml
             kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/service.yaml
-            
+
+        - name: List kube nodes
+          run: kubectl get svc

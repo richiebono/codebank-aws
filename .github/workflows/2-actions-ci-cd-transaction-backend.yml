@@ -87,3 +87,6 @@ jobs:
             kubectl apply -f ../k8s/grafana/0-PersistentVolumeClaim.yaml
             kubectl apply -f ../k8s/grafana/1-deploy.yaml
             kubectl apply -f ../k8s/grafana/2-Service.yaml
+
+        - name: List kube nodes
+          run: kubectl get svc
