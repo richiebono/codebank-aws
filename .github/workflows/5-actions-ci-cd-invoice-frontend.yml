@@ -1,7 +1,7 @@
 name: "5 - Build Invoice Frontend"
 on:
   workflow_run:
-    workflows: ["4 - Build Store API"]
+    workflows: ["3 - Build Store API"]
     branches: [main]
     types: 
       - completed
