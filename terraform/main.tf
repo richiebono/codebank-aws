@@ -5,8 +5,8 @@ terraform {
       local = ">=2.1.0"
     }    
     backend "s3" {
-      bucket = var.terraform_state_bucket_name
-      key    = var.terraform_state_bucket_key
+      bucket = "bono-terraform-tfstate-bucket"
+      key    = "codebank-terraform.tfstate"
       region = "us-east-1"
     }
 }
