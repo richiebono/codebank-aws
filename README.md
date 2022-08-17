@@ -1,18 +1,11 @@
-# Imersão Fullcycle 3 - Codebank
-![Imersão Full Stack && Full Cycle](https://events-fullcycle.s3.amazonaws.com/events-fullcycle/static/site/img/grupo_4417.png)
+## About the repository
+This repository contains all code examples for using a Full Cyle architecture proposed by netflix.
 
-Participe gratuitamente: https://imersao.fullcycle.com.br/
+Installation instructions are in the README.md for each project.
 
-## Sobre o repositório
-Esse repositório contém todo código utilizado durante as aulas para referência.
-
-Faça seu fork e também nos dê uma estrelinha para nos ajudar a divulgar o projeto.
-
-As instruções de instalações estão no README.md de cada projeto.
-
-## Ordem recomendada de execução
+## Recommended order of execution
 
 * Apache Kafka
-* Codebank (Golang)
-* Back-end e front-end da loja (Nest.js e Next.js)
-* Back-end e front-end das faturas (Nest.js e Next.js)
+* Transaction codebank(Golang)
+* Store backend and frontend (Nest.js and Next.js)
+* Back-end and front-end of invoices (Nest.js and Next.js)

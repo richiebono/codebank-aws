@@ -1,6 +1,6 @@
 prefix = "codebank"
 cluster_name = "codebank-cluster"
-aws_instance_types = ["t2.micro"]
+aws_instance_types = ["t3.micro"]
 retention_days = 30
 desired_size = 2
 max_size = 4
