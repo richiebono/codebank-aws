@@ -8,3 +8,5 @@ variable "min_size" {}
 variable "aws_instance_types" {}
 variable "AWS_ACCESS_KEY_ID" {}
 variable "AWS_SECRET_ACCESS_KEY" {}
+variable "terraform_state_bucket_name" {}
+variable "terraform_state_bucket_key" {}
