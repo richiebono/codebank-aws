@@ -33,4 +33,4 @@ Acessar http://localhost:3002/credit-cards.
 
 Lembrar de instalar o WSL2 e Docker. Vejo o vídeo: [https://www.youtube.com/watch?v=On_nwfkiSAE](https://www.youtube.com/watch?v=On_nwfkiSAE) 
 
-Siga o guia rápido de instalação: [https://github.com/codeedu/wsl2-docker-quickstart](https://github.com/codeedu/wsl2-docker-quickstart) 
+Siga o guia rápido de instalação: [https://github.com/richiebono/wsl2-docker-quickstart](https://github.com/richiebono/wsl2-docker-quickstart) 

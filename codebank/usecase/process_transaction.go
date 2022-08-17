@@ -2,9 +2,9 @@ package usecase
 
 import (
 	"encoding/json"
-	"github.com/codeedu/codebank/domain"
-	"github.com/codeedu/codebank/dto"
-	"github.com/codeedu/codebank/infrastructure/kafka"
+	"github.com/richiebono/codebank/domain"
+	"github.com/richiebono/codebank/dto"
+	"github.com/richiebono/codebank/infrastructure/kafka"
 	"os"
 	"time"
 )

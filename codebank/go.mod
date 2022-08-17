@@ -1,4 +1,4 @@
-module github.com/codeedu/codebank
+module github.com/richiebono/codebank
 
 go 1.15
 

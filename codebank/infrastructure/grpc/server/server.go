@@ -1,9 +1,9 @@
 package server
 
 import (
-	"github.com/codeedu/codebank/infrastructure/grpc/pb"
-	"github.com/codeedu/codebank/infrastructure/grpc/service"
-	"github.com/codeedu/codebank/usecase"
+	"github.com/richiebono/codebank/infrastructure/grpc/pb"
+	"github.com/richiebono/codebank/infrastructure/grpc/service"
+	"github.com/richiebono/codebank/usecase"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"

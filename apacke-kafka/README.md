@@ -1,32 +1,28 @@
-# Imersão Full Stack & FullCycle - Codebank
+## Description
 
-## Descrição
+Apache Kafka Repository (Backend)
 
-Repositório do Apache Kafka (Backend)
+## Configure /etc/hosts
 
-## Configurar /etc/hosts
+The communication between the applications takes place directly through the machine's network.
+For this it is necessary to configure an address that all Docker containers can access.
 
-A comunicação entre as aplicações se dá de forma direta através da rede da máquina.
-Para isto é necessário configurar um endereços que todos os containers Docker consigam acessar.
-
-Acrescente no seu /etc/hosts (para Windows o caminho é C:\Windows\system32\drivers\etc\hosts):
+Add to your /etc/hosts (for Windows the path is C:\Windows\system32\drivers\etc\hosts):
 ```
 127.0.0.1 host.docker.internal
 ```
-Em todos os sistemas operacionais é necessário abrir o programa para editar o *hosts* como Administrator da máquina ou root.
+On all operating systems it is necessary to open the program to edit *hosts* as Administrator of the machine or root.
 
-## Rodar a aplicação
+## Run the application
 
-Execute os comandos:
+Run the commands:
 
 ```
 docker-compose up
 ```
 
-Quando parar os containers do Kafka, lembre-se antes de rodar o **docker-compose up**, rodar o **docker-compose down** para limpar o armazenamento, senão lançará erro ao subir novamente.
+When stopping Kafka containers, remember before running **docker-compose up**, run **docker-compose down** to clean up the storage, otherwise it will throw an error when up again.
 
-### Para Windows 
+### For Windows
 
-Lembrar de instalar o WSL2 e Docker. Vejo o vídeo: [https://www.youtube.com/watch?v=On_nwfkiSAE](https://www.youtube.com/watch?v=On_nwfkiSAE) 
-
-Siga o guia rápido de instalação: [https://github.com/codeedu/wsl2-docker-quickstart](https://github.com/codeedu/wsl2-docker-quickstart) 
+Remember to install WSL2 and Docker.
