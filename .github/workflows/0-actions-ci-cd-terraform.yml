@@ -11,6 +11,7 @@ jobs:
           TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           TERRAFORM_VERSION: 1.2.6
           WORKING_DIRECTORY: terraform
+          CLUSTER_REGION: us-east-1
 
         defaults:
           run:
@@ -29,7 +30,7 @@ jobs:
        
           - name: Terraform Init
             id: init
-            run: terraform init
+            run: -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -backend-config="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" -backend-config="region=${{ var.CLUSTER_REGION }}" 
           
           - name: Terraform Plan
             id: plan

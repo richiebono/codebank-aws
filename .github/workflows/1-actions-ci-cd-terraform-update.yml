@@ -30,7 +30,7 @@ jobs:
        
           - name: Terraform Init
             id: init
-            run: terraform init
+            run: -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -backend-config="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" -backend-config="region=${{ var.CLUSTER_REGION }}" 
           
           - name: Terraform Plan
             id: plan
