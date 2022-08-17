@@ -76,11 +76,11 @@ jobs:
         - name: Update kube config
           run: aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }}
 
-        - name: Deploy image to Amazon EKS
-          run: |
-            kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/configmap.yaml
-            kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/deploy.yaml
-            kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/service.yaml
+        # - name: Deploy image to Amazon EKS
+        #   run: |
+        #     kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/configmap.yaml
+        #     kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/deploy.yaml
+        #     kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/service.yaml
             
         - name: List kube nodes
           run: kubectl get svc
