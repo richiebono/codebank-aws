@@ -41,7 +41,7 @@ resource "aws_iam_role_policy_attachment" "cluster-AmazonEKSClusterPolicy" {
 }
 
 resource "aws_cloudwatch_log_group" "log" {
-  name = "/aws/eks-bankcode/${var.prefix}-${var.cluster_name}/cluster"
+  name = "/aws/eks-${var.prefix}/${var.prefix}-${var.cluster_name}/cluster"
   retention_in_days = var.retention_days
 }
 
@@ -95,10 +95,10 @@ resource "aws_iam_role_policy_attachment" "node-AmazonEC2ContainerRegistryReadOn
 
 resource "aws_eks_node_group" "node-1" {
   cluster_name = aws_eks_cluster.cluster.name
-  node_group_name = "node-1"
+  node_group_name = "${var.prefix}-${var.cluster_name}-node"
   node_role_arn = aws_iam_role.node.arn
   subnet_ids = var.subnet_ids
-  instance_types = ["t3.micro"]
+  instance_types = var.aws_instance_types
   scaling_config {
     desired_size = var.desired_size
     max_size = var.max_size

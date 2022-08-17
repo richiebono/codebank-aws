@@ -4,6 +4,11 @@ terraform {
       aws = ">=3.54.0"
       local = ">=2.1.0"
     }    
+    backend "s3" {
+      bucket = var.terraform_state_bucket_name
+      key    = var.terraform_state_bucket_key
+      region = "us-east-1"
+    }
 }
 
 provider "aws" {
@@ -28,4 +33,5 @@ module "eks" {
     desired_size = var.desired_size
     max_size = var.max_size
     min_size = var.min_size
+    aws_instance_types = var.aws_instance_types
 }
