@@ -1,7 +1,7 @@
 name: "2 - Build Transaction Backend"
 on:
   workflow_run:
-    workflows: ["0 - Provisioning K8S Cluster using Terraform", "1 - Update provisioning K8S Cluster using Terraform"]
+    workflows: ["1 - Update provisioning K8S Cluster using Terraform"]
     branches: [main]
     types: 
       - completed
