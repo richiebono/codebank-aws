@@ -83,6 +83,10 @@ jobs:
             kubectl apply -f ../k8s/postgres/persistent-volume-claim.yaml
             kubectl apply -f ../k8s/postgres/deploy.yaml
             kubectl apply -f ../k8s/postgres/service.yaml  
+            kubectl apply -f ../k8s/pgadmin4/secret.yaml
+            kubectl apply -f ../k8s/pgadmin4/configmap.yaml
+            kubectl apply -f ../k8s/pgadmin4/service.yaml
+            kubectl apply -f ../k8s/pgadmin4/statefulset.yaml            
             kubectl apply -f ../k8s/apacke-kafka/0-namespace.yaml
             kubectl apply -f ../k8s/apacke-kafka/1-zookeeper.yaml
             kubectl apply -f ../k8s/apacke-kafka/2-kafka-broker.yaml
