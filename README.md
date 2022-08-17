@@ -1,5 +1,5 @@
 ## About the repository
-This repository contains all code examples for using a Full Cyle architecture proposed by netflix.
+This repository contains all code examples for using a Full Cycle methodologies proposed by netflix.
 
 Installation instructions are in the README.md for each project.
 

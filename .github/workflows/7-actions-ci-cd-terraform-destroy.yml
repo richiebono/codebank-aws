@@ -12,7 +12,7 @@ jobs:
           TERRAFORM_VERSION: 1.2.6
           WORKING_DIRECTORY: terraform
           CLUSTER_REGION: us-east-1
-          
+
         defaults:
           run:
             shell: bash
@@ -30,11 +30,6 @@ jobs:
           - name: Terraform Init
             id: init           
             run: terraform init -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -backend-config="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" -backend-config="region=${{ env.CLUSTER_REGION }}" 
-              
-          - name: Terraform Format
-            id: format
-            run: terraform fmt -check
-            continue-on-error: true
 
           - name: Terraform Plan
             id: plan            

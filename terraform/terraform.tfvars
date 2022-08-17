@@ -1,4 +1,5 @@
-prefix = "codebank"
+# Profix is the company name
+prefix = "bono"
 cluster_name = "codebank-cluster"
 aws_instance_types = ["t3.micro"]
 retention_days = 30
