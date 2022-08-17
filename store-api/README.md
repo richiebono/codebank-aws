@@ -1,30 +1,36 @@
-# Description
+[<img src="../img/nestjs.svg" width="72"/>](Nest.js)
 
-Invoice backend repository (Code Invoice) made with Nest.js
+# Imersão Full Stack & FullCycle 9.0 - Codebank - Back-end da loja
 
-**Important**: The Apache Kafka application, Golang (codebank) must be running first.
+## Descrição
 
-## Run the application
+Repositório do back-end das faturas (Code Invoice) feito com Nest.js
 
-### Configure /etc/hosts
+**Importante**: A aplicação do Apache Kafka, Golang (codebank) deve estar rodando primeiro.
 
-The communication between the applications takes place directly through the machine's network.
-For this it is necessary to configure an address that all Docker containers can access.
+## Rodar a aplicação
 
-Add to your /etc/hosts (for Windows the path is C:\Windows\system32\drivers\etc\hosts):
+### Configurar /etc/hosts
+
+A comunicação entre as aplicações se dá de forma direta através da rede da máquina.
+Para isto é necessário configurar um endereços que todos os containers Docker consigam acessar.
+
+Acrescente no seu /etc/hosts (para Windows o caminho é C:\Windows\system32\drivers\etc\hosts):
 ```
 127.0.0.1 host.docker.internal
 ```
-On all operating systems it is necessary to open the program to edit *hosts* as Administrator of the machine or root.
+Em todos os sistemas operacionais é necessário abrir o programa para editar o *hosts* como Administrator da máquina ou root.
 
-Run the commands:
+Execute os comandos:
 
 ```
 docker-compose up
 ```
 
-Access http://localhost:3002/credit-cards.
+Acessar http://localhost:3002/credit-cards.
 
-### For Windows
+### Para Windows 
 
-Remember to install WSL2 and Docker.
+Lembrar de instalar o WSL2 e Docker. Vejo o vídeo: [https://www.youtube.com/watch?v=On_nwfkiSAE](https://www.youtube.com/watch?v=On_nwfkiSAE) 
+
+Siga o guia rápido de instalação: [https://github.com/codeedu/wsl2-docker-quickstart](https://github.com/codeedu/wsl2-docker-quickstart) 

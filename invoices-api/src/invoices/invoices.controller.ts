@@ -7,7 +7,7 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 export class InvoicesController {
   constructor(private readonly invoicesService: InvoicesService) {}
 
-  @MessagePattern('payments')
+  @MessagePattern('transactions')
   create(@Payload(new ValidationPipe()) message: KafkaCreateInvoiceDto) {
     return this.invoicesService.create(message.value);
   }

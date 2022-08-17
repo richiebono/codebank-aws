@@ -11,4 +11,4 @@ RUN npm install -g @nestjs/cli@7.6.0
 
 USER node
 
-WORKDIR /invoices-api
+WORKDIR /home/node/app
