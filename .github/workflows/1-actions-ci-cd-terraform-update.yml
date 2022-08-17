@@ -12,7 +12,8 @@ jobs:
           TF_VAR_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           TERRAFORM_VERSION: 1.2.6
           WORKING_DIRECTORY: terraform
-
+          CLUSTER_REGION: us-east-1
+          
         defaults:
           run:
             shell: bash
