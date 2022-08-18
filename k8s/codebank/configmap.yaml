@@ -4,7 +4,7 @@ metadata:
   name: codebank-conf
 data:
   env: |
-    host=postgres-postgresql
+    host=postgres
     port=5432
     user=postgres
     password=qiD4JgDwl9

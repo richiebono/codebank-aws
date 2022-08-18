@@ -5,7 +5,7 @@ metadata:
 data:
   env: |
     TYPEORM_CONNECTION=postgres
-    TYPEORM_HOST=postgres-postgresql
+    TYPEORM_HOST=postgres
     TYPEORM_USERNAME=postgres
     TYPEORM_PASSWORD=qiD4JgDwl9
     TYPEORM_DATABASE=invoice

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: codebank
-          image: richiebono/imersao3-codebank:latest
+          image: richiebono/codebank-transaction-backend:latest
 
           volumeMounts:
             - name: codebank-volume
