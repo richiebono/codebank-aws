@@ -1,7 +1,7 @@
 variable "region" {
   description = "AWS region"
   type        = string
-  default     = "us-east-1"
+  default     = "us-east-2"
 }
 
 variable "AWS_ACCESS_KEY_ID" {
@@ -14,7 +14,7 @@ variable "AWS_SECRET_ACCESS_KEY" {
   type        = string
 }
 
-variable "CLUSTER_NAME" {
+variable "AWS_CLUSTER_NAME" {
   description = "AWS Cluster Name"
   type        = string
 }

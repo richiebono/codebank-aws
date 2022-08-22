@@ -28,6 +28,11 @@ output "AWS_SECRET_ACCESS_KEY" {
   value       = var.AWS_SECRET_ACCESS_KEY
 }
 
+output "AWS_CLUSTER_NAME" {
+  description = "AWS Cluster Name"
+  value       = var.AWS_CLUSTER_NAME
+}
+
 output "cluster_name" {
   description = "Kubernetes Cluster Name"
   value       = local.cluster_name
