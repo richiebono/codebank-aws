@@ -1,0 +1,53 @@
+name: "6 - Build Store Frontend"
+on:
+  push:
+          branches: [main]    
+
+jobs:
+    build:
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        runs-on: ubuntu-latest
+        env:
+          DOCKER_REPOSITORY: richiebono
+          IMAGE_NAME: codebank-store-frontend
+          IMAGE_TAG: ${{github.run_number}} # ${{ github.sha }}
+          WORKING_DIRECTORY: store-frontend
+          CLUSTER_NAME: bono-codebank-cluster
+          CLUSTER_REGION: us-east-1
+
+        defaults:
+          run:
+            shell: bash
+            working-directory: ${{ env.WORKING_DIRECTORY }}
+
+        steps:
+        - name: Checkout Code
+          uses: actions/checkout@v2
+
+        - name: Install kubectl
+          uses: azure/setup-kubectl@v1
+          with:
+            version: 'v1.21.3'
+          id: install
+
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ env.CLUSTER_REGION }}
+
+        - name: Login to Amazon ECR
+          id: login-ecr
+          uses: aws-actions/amazon-ecr-login@v1
+
+        - name: Update kube config
+          run: aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }}
+
+        # - Rollback K8S deploy
+        # - name: List kube nodes
+        #   run: | 
+        #     kubectl rollout undo deployment invoice-api
+
+        - name: List kube nodes
+          run: kubectl get svc
