@@ -87,15 +87,15 @@ jobs:
             kubectl apply -f ../k8s/pgadmin4/configmap.yaml
             kubectl apply -f ../k8s/pgadmin4/service.yaml
             kubectl apply -f ../k8s/pgadmin4/statefulset.yaml            
-            # kubectl apply -f ../k8s/apacke-kafka/namespace.yaml
-            # kubectl apply -f ../k8s/apacke-kafka/zookeeper.yaml
-            # kubectl apply -f ../k8s/apacke-kafka/kafka-broker.yaml
-            # kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/configmap.yaml
-            # kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/deploy.yaml
-            # kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/service.yaml            
-            # kubectl apply -f ../k8s/grafana/persistent-volume-claim.yaml
-            # kubectl apply -f ../k8s/grafana/deploy.yaml
-            # kubectl apply -f ../k8s/grafana/Service.yaml
+#             kubectl apply -f ../k8s/apacke-kafka/namespace.yaml
+#             kubectl apply -f ../k8s/apacke-kafka/zookeeper.yaml
+#             kubectl apply -f ../k8s/apacke-kafka/kafka-broker.yaml
+#             kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/configmap.yaml
+#             kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/deploy.yaml
+#             kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/service.yaml            
+#             kubectl apply -f ../k8s/grafana/persistent-volume-claim.yaml
+#             kubectl apply -f ../k8s/grafana/deploy.yaml
+#             kubectl apply -f ../k8s/grafana/Service.yaml
 
         - name: List kube nodes
           run: kubectl get svc
