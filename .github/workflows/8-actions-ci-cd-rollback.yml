@@ -1,4 +1,4 @@
-name: "6 - Build Store Frontend"
+name: "8 - Rollback last deployment"
 on:
   workflow_dispatch:  
 

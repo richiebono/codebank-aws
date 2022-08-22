@@ -9,7 +9,7 @@ data:
     user=postgres
     password=qiD4JgDwl9
     dbname=codebank
-    KafkaBootstrapServers=pkc-ep9mm.us-east-2.aws.confluent.cloud:9092
+    KafkaBootstrapServers=pkc-ep9mm.us-east-1.aws.confluent.cloud:9092
     KafkaTransactionsTopic=payments
     security.protocol=SASL_SSL
     sasl.mechanisms="PLAIN"
