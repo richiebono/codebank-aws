@@ -3,10 +3,9 @@ kind: Service
 metadata:
  name: pgadmin-service
 spec:
- ports:
- - protocol: TCP
-   port: 80
-   targetPort: http
- selector:
-   app: pgadmin
- type: LoadBalancer
+  type: LoadBalancer
+  selector:
+    app: pgadmin
+  ports:
+  - port: 80
+    targetPort: http
