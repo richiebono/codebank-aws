@@ -45,5 +45,10 @@ jobs:
         - name: Update kube config
           run: aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }}
 
-        - name: List kube nodes
+        - name: List kube pods
+          run: kubectl get pds
+
+        - name: List kube services
           run: kubectl get svc
+
+        
