@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: codebank-invoices-frontend
-          image: richiebono/imersao3-codebank-invoices-frontend:latest
+          image: richiebono/codebank-invoices-frontend:latest
           ports:
             - containerPort: 3000
           volumeMounts:

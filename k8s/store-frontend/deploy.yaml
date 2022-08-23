@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: codebank-store-frontend
-          image: richiebono/imersao3-codebank-store-frontend:latest
+          image: richiebono/codebank-store-frontend:latest
           ports:
             - containerPort: 3000
           volumeMounts:

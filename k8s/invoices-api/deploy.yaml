@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: codebank-invoice-api
-          image: richiebono/imersao3-codebank-invoice-api:latest
+          image: richiebono/codebank-invoice-api:latest
           ports:
             - containerPort: 3000
           volumeMounts:
