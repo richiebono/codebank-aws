@@ -78,7 +78,6 @@ jobs:
 
         - name: Deploy image to Amazon EKS
           run: |
-            kubectl delete svc pgadmin-service            
             kubectl apply -f ../k8s/postgres/configmap.yaml
             kubectl apply -f ../k8s/postgres/persistent-volume.yaml
             kubectl apply -f ../k8s/postgres/persistent-volume-claim.yaml
@@ -90,7 +89,7 @@ jobs:
             kubectl apply -f ../k8s/pgadmin4/statefulset.yaml            
             kubectl apply -f ../k8s/apacke-kafka/namespace.yaml
             kubectl apply -f ../k8s/apacke-kafka/zookeeper.yaml
-            kubectl apply -f ../k8s/apacke-kafka/kafka-broker.yaml
+            kubectl replace --force -f ../k8s/apacke-kafka/kafka-broker.yaml
             kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/configmap.yaml
             kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/deploy.yaml
             kubectl apply -f ../k8s/${{ env.WORKING_DIRECTORY }}/service.yaml            
