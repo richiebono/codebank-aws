@@ -46,7 +46,7 @@ jobs:
           run: aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }}
 
         - name: List kube pods
-          run: kubectl get pods | grep schedulerName.
+          run: kubectl get pods 
 
         - name: List kube services
           run: kubectl get svc
