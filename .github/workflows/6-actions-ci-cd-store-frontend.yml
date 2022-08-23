@@ -15,7 +15,7 @@ jobs:
           IMAGE_NAME: codebank-store-frontend
           IMAGE_TAG: ${{github.run_number}} # ${{ github.sha }}
           WORKING_DIRECTORY: store-frontend
-          CLUSTER_NAME: bono-codebank-cluster
+          CLUSTER_NAME: codebank-eks
           CLUSTER_REGION: us-east-1
 
         defaults:
