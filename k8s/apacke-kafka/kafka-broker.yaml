@@ -8,7 +8,9 @@ metadata:
 spec:
   ports:
   - port: 9092
+    name: port-1
   - port: 9094
+    name: port-2
   selector:
     app: kafka-broker
 ---
