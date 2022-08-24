@@ -23,15 +23,15 @@ spec:
          imagePullPolicy: Always
          env:
          - name: PGADMIN_DEFAULT_EMAIL
-           value: richie@gmail.com
+           value: richiebono@gmail.com
          - name: PGADMIN_DEFAULT_PASSWORD
            valueFrom:
              secretKeyRef:
                name: pgadmin
-               key: teste123
+               key: pgadmin-password
          ports:
          - name: http
-           containerPort: 8000
+           containerPort: 80
            protocol: TCP
          volumeMounts:
          - name: pgadmin-config
