@@ -1,4 +1,4 @@
-name: "9 - List Nodes"
+name: "9 - Check Cluster"
 on:
   workflow_dispatch:  
 
@@ -6,11 +6,9 @@ jobs:
     build:       
         runs-on: ubuntu-latest
         env:
-          DOCKER_REPOSITORY: richiebono
-          IMAGE_NAME: codebank-store-frontend
-          IMAGE_TAG: ${{github.run_number}} # ${{ github.sha }}
+          DOCKER_REPOSITORY: richiebono        
           WORKING_DIRECTORY: store-frontend
-          CLUSTER_NAME: codebank-eks
+          CLUSTER_NAME: bono-codebank-cluster
           CLUSTER_REGION: us-east-1
 
         defaults:

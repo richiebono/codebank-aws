@@ -15,7 +15,7 @@
 #           IMAGE_NAME: codebank-invoices-api
 #           IMAGE_TAG: ${{github.run_number}} # ${{ github.sha }}
 #           WORKING_DIRECTORY: invoices-api
-#           CLUSTER_NAME: codebank-eks
+#           CLUSTER_NAME: bono-codebank-cluster
 #           CLUSTER_REGION: us-east-1
         
 #         defaults:
