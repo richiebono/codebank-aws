@@ -1,37 +1,26 @@
-terraform {
-    required_version = ">=0.13.1"
-    required_providers {
-      aws = ">=3.54.0"
-      local = ">=2.1.0"
-    }    
-    backend "s3" {
-      bucket = "bono-terraform-tfstate-bucket"
-      key    = "codebank-terraform.tfstate"
-      region = "us-east-1"
-    }
+# Kubernetes provider
+# https://learn.hashicorp.com/terraform/kubernetes/provision-eks-cluster#optional-configure-terraform-kubernetes-provider
+# To learn how to schedule deployments and services using the provider, go here: https://learn.hashicorp.com/terraform/kubernetes/deploy-nginx-kubernetes
+# The Kubernetes provider is included in this file so the EKS module can complete successfully. Otherwise, it throws an error when creating `kubernetes_config_map.aws_auth`.
+# You should **not** schedule deployments and services in this workspace. This keeps workspaces modular (one for provision EKS, another for scheduling Kubernetes resources) as per best practices.
+provider "kubernetes" {
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 }
 
 provider "aws" {
-  region = "us-east-1"  
+  region = var.region
   access_key = var.AWS_ACCESS_KEY_ID
   secret_key = var.AWS_SECRET_ACCESS_KEY
 }
 
-module "new-vpc" {
-  source = "./modules/vpc"
-  prefix = var.prefix
-  vpc_cidr_block = var.vpc_cidr_block
+data "aws_availability_zones" "available" {}
+
+locals {
+  cluster_name = "${var.AWS_CLUSTER_NAME}"
 }
 
-module "eks" {
-    source = "./modules/eks"
-    prefix = var.prefix
-    vpc_id = module.new-vpc.vpc_id
-    cluster_name = var.cluster_name
-    retention_days = var.retention_days
-    subnet_ids = module.new-vpc.subnet_ids
-    desired_size = var.desired_size
-    max_size = var.max_size
-    min_size = var.min_size
-    aws_instance_types = var.aws_instance_types
+resource "random_string" "suffix" {
+  length  = 8
+  special = false
 }

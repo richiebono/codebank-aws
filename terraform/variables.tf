@@ -1,20 +1,10 @@
-variable "region" {
-  description = "AWS region"
-  type        = string
-  default     = "us-east-1"
-}
-
-variable "AWS_ACCESS_KEY_ID" {
-  description = "AWS Access Key"
-  type        = string
-}
-
-variable "AWS_SECRET_ACCESS_KEY" {
-  description = "AWS Secret Key"
-  type        = string
-}
-
-variable "AWS_CLUSTER_NAME" {
-  description = "AWS Cluster Name"
-  type        = string
-}
+variable "prefix" {}
+variable "vpc_cidr_block" {}
+variable "cluster_name" {}
+variable retention_days {}
+variable "desired_size" {}
+variable "max_size" {}
+variable "min_size" {}
+variable "aws_instance_types" {}
+variable "AWS_ACCESS_KEY_ID" {}
+variable "AWS_SECRET_ACCESS_KEY" {}
