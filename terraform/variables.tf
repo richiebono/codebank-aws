@@ -5,6 +5,7 @@ variable retention_days {}
 variable "desired_size" {}
 variable "max_size" {}
 variable "min_size" {}
+variable "node_group_number" {}
 variable "aws_instance_types" {}
 variable "AWS_ACCESS_KEY_ID" {}
 variable "AWS_SECRET_ACCESS_KEY" {}

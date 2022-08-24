@@ -7,3 +7,4 @@ variable "desired_size" {}
 variable "max_size" {}
 variable "min_size" {}
 variable "aws_instance_types" {}
+variable "node_group_number" {}

@@ -33,5 +33,6 @@ module "eks" {
     desired_size = var.desired_size
     max_size = var.max_size
     min_size = var.min_size
+    node_group_number = var.node_group_number
     aws_instance_types = var.aws_instance_types
 }
