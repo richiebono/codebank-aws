@@ -78,6 +78,7 @@ jobs:
 
         - name: Deploy image to Amazon EKS
           run: |
+            kubectl delete srv pgadmin4
             kubectl apply -f ../k8s/postgres/configmap.yaml
             kubectl apply -f ../k8s/postgres/persistent-volume.yaml
             kubectl apply -f ../k8s/postgres/persistent-volume-claim.yaml
