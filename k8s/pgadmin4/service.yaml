@@ -5,7 +5,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: pgadmin-service
+    app: pgadmin
   ports:
   - port: 80
     targetPort: 80
