@@ -27,8 +27,8 @@ jobs:
         - name: Checkout Code
           uses: actions/checkout@v2
 
-        - name: QEMU
-          uses: docker/setup-qemu-action@v1
+        # - name: QEMU
+        #   uses: docker/setup-qemu-action@v1
 
         # - name: Docker Buildx
         #   uses: docker/setup-buildx-action@v1
@@ -77,7 +77,8 @@ jobs:
           run: aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }}
 
         - name: Deploy image to Amazon EKS
-          run: |           
+          run: |     
+            kubectl delete svc pgadmin-service      
             kubectl apply -f ../k8s/postgres/configmap.yaml
             kubectl apply -f ../k8s/postgres/persistent-volume.yaml
             kubectl apply -f ../k8s/postgres/persistent-volume-claim.yaml
