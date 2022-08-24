@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pgadmin-ingress
+  namespace: pgadmin  
+spec:
+  tls:
+  - hosts:
+    - aa371ab19bb7b4c37964eee73afabc6c-1330732912.us-east-1.elb.amazonaws.com
+    secretName: pgadmin-ingress-portal-tls
+  rules:
+  - host: aa371ab19bb7b4c37964eee73afabc6c-1330732912.us-east-1.elb.amazonaws.com
+    http:
+      paths:
+      - path:
+        backend:
+          serviceName: pgadmin-service
+          servicePort: 443
