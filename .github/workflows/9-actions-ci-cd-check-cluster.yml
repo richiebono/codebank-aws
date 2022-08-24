@@ -52,4 +52,7 @@ jobs:
         - name: List kube services
           run: kubectl get svc
 
+        - name: List Kube Ingress 
+          run: kubctl get ingress
+
         
