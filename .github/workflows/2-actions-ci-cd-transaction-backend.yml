@@ -77,8 +77,7 @@ jobs:
           run: aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }}
 
         - name: Deploy image to Amazon EKS
-          run: |     
-            kubectl delete svc pgadmin-service      
+          run: |         
             kubectl apply -f ../k8s/postgres/configmap.yaml
             kubectl apply -f ../k8s/postgres/persistent-volume.yaml
             kubectl apply -f ../k8s/postgres/persistent-volume-claim.yaml
@@ -86,9 +85,9 @@ jobs:
             kubectl apply -f ../k8s/postgres/service.yaml  
             kubectl apply -f ../k8s/pgadmin4/secret.yaml
             kubectl apply -f ../k8s/pgadmin4/configmap.yaml
+            kubectl apply -f ../k8s/pgadmin4/volume.yaml 
             kubectl apply -f ../k8s/pgadmin4/deploy.yaml
-            kubectl apply -f ../k8s/pgadmin4/service.yaml
-            kubectl apply -f ../k8s/pgadmin4/volume.yaml          
+            kubectl apply -f ../k8s/pgadmin4/service.yaml                     
           # kubectl apply -f ../k8s/apacke-kafka/namespace.yaml
           # kubectl apply -f ../k8s/apacke-kafka/zookeeper.yaml
           # kubectl apply -f ../k8s/apacke-kafka/kafka-broker.yaml
