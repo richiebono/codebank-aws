@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: store-frontend
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: deployments/store-frontend
+    # repoURL: https://github.com/richiebono/codebank-store-frontend.git #multiple repos
+    repoURL: https://github.com/richiebono/codebank.git #monorepo
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-kong.yaml
+  destination:
+    namespace: bets
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

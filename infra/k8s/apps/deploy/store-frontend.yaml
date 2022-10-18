@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    version: v1
+    app: codebank-store-frontend
+  name: codebank-store-frontend
+  namespace: store
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: codebank-store-frontend
+  template:
+    metadata:
+      labels:
+        app: codebank-store-frontend
+        version: v1
+        stack: echo
+        interface: webapp
+        language: nextjs
+    spec:
+      containers:
+        - image: richiebono/codebank-store-frontend:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "5Mi"
+              cpu: "100m"
+            limits:
+              memory: "10Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          name: codebank-store-frontend
+          ports:
+            - containerPort: 9999
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          volumeMounts:
+            - name: codebank-store-frontend-volume
+              mountPath: /home/node/app/.env
+              subPath: .env
+      volumes:
+        - name: codebank-store-frontend-volume
+          configMap:
+            name: codebank-store-frontend-conf
+            items:
+              - key: env
+                path: .env

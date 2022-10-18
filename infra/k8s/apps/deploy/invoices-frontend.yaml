@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    version: v1
+    app: invoices-frontend
+  name: invoices-frontend
+  namespace: invoice
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: invoices-frontend
+  template:
+    metadata:
+      labels:
+        app: invoices-frontend
+        version: v1
+        stack: echo
+        interface: rest
+        language: nestjs
+    spec:
+      containers:
+        - image: richiebono/invoices-frontend:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "5Mi"
+              cpu: "100m"
+            limits:
+              memory: "10Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          name: invoices-frontend
+          ports:
+            - containerPort: 9999
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          volumeMounts:
+            - name: invoices-frontend-volume
+              mountPath: /home/node/app/.env
+              subPath: .env
+      volumes:
+        - name: invoices-frontend-volume
+          configMap:
+            name: invoices-frontend-conf
+            items:
+              - key: env
+                path: .env

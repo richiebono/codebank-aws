@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    version: v1
+    app: codebank
+  name: codebank
+  namespace: codebank
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: codebank
+  template:
+    metadata:
+      labels:
+        app: codebank
+        version: v1
+        stack: echo
+        interface: grpc
+        language: golang
+    spec:
+      containers:
+        - image: richiebono/codebank:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "5Mi"
+              cpu: "100m"
+            limits:
+              memory: "10Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          name: codebank
+          ports:
+            - containerPort: 9999
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          volumeMounts:
+            - name: codebank-volume
+              mountPath: /home/node/app/.env
+              subPath: .env
+      volumes:
+        - name: codebank-volume
+          configMap:
+            name: codebank-conf
+            items:
+              - key: env
+                path: .env

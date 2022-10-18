@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: codebank
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+    konghq.com/override: do-not-preserve-host
+    konghq.com/plugins: oidc-codebank,rl-by-header,prometheus-codebank
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/codebank
+            pathType: Prefix
+            backend:
+              service:
+                name: codebank
+                port:
+                  number: 9999

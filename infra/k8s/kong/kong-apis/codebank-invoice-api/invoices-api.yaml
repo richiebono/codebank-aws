@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: invoices-api
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+    konghq.com/override: do-not-preserve-host
+    konghq.com/plugins: oidc-codebank,rl-by-header,prometheus-codebank
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/invoices-api
+            pathType: Prefix
+            backend:
+              service:
+                name: invoices-api
+                port:
+                  number: 9999

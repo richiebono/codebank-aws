@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: codebank
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: deployments/codebank
+    repoURL: https://github.com/richiebono/codebank.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-kong.yaml
+  destination:
+    namespace: codebank
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

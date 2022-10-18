@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    version: v1
+    app: store-api
+  name: store-api
+  namespace: store
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: store-api
+  template:
+    metadata:
+      labels:
+        app: store-api
+        version: v1
+        stack: echo
+        interface: webapp
+        language: nextjs
+    spec:
+      containers:
+        - image: richiebono/store-api:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "5Mi"
+              cpu: "100m"
+            limits:
+              memory: "10Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          name: store-api
+          ports:
+            - containerPort: 9999
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          volumeMounts:
+            - name: store-api-volume
+              mountPath: /home/node/app/.env
+              subPath: .env
+      volumes:
+        - name: store-api-volume
+          configMap:
+            name: store-api-conf
+            items:
+              - key: env
+                path: .env

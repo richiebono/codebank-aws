@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    version: v1
+    app: invoices-api
+  name: invoices-api
+  namespace: invoice
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: invoices-api
+  template:
+    metadata:
+      labels:
+        app: invoices-api
+        version: v1
+        stack: echo
+        interface: webapp
+        language: nextjs
+    spec:
+      containers:
+        - image: richiebono/invoices-api:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "5Mi"
+              cpu: "100m"
+            limits:
+              memory: "10Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          name: invoices-api
+          ports:
+            - containerPort: 9999
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 9999
+              scheme: HTTP
+            initialDelaySeconds: 1
+          volumeMounts:
+            - name: invoices-api-volume
+              mountPath: /home/node/app/.env
+              subPath: .env
+      volumes:
+        - name: invoices-api-volume
+          configMap:
+            name: invoices-api-conf
+            items:
+              - key: env
+                path: .env
