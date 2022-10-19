@@ -1,0 +1,220 @@
+version: '3.8'
+services:
+
+  rabbitmq:
+#   For more information, visit https://github.com/bitnami/containers/tree/main/bitnami/rabbitmq
+    container_name: CODEBANK-rabbitmq
+    environment:
+      RABBITMQ_PASSWORD: bitnami
+      RABBITMQ_USERNAME: user
+    image: bitnami/rabbitmq:${CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_RABBITMQ:-3.10.7-debian-11-r6}
+    networks:
+      - CODEBANK
+    ports:
+      - 15672:15672
+      - 5672:5672
+    restart: always
+
+  postgres:
+#   For more information, visit https://github.com/bitnami/containers/tree/main/bitnami/postgresql
+    container_name: CODEBANK-postgres
+    environment:
+      POSTGRESQL_DATABASE: G2
+      POSTGRESQL_PASSWORD: CODEBANK
+      POSTGRESQL_POSTGRES_PASSWORD: postgres
+      POSTGRESQL_USERNAME: CODEBANK
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    image: bitnami/postgresql:${CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_POSTGRESQL:-14.5.0-debian-11-r1}
+    networks:
+      - CODEBANK
+    ports:
+      - 5432:5432
+    restart: always
+
+  init-postgresql:
+#   For more information, visit https://github.com/richiebono/init-postgresql
+    container_name: CODEBANK-init-postgresql
+    depends_on:
+      - postgres
+    environment:
+      LC_CTYPE: en_US.utf8
+      CODEBANK_CONFIGURATION_MODIFICATIONS: |
+        addDataSource CUSTOMERS
+        addDataSource REFERENCE
+        addDataSource WATCHLIST
+      CODEBANK_ENGINE_CONFIGURATION_JSON: >-
+        {
+          "PIPELINE": {
+            "CONFIGPATH": "/etc/opt/CODEBANK",
+            "RESOURCEPATH": "/opt/CODEBANK/g2/resources",
+            "SUPPORTPATH": "/opt/CODEBANK/data"
+          },
+          "SQL": {
+            "BACKEND": "SQL",
+            "CONNECTION": "postgresql://postgres:postgres@CODEBANK-postgres:5432:G2/"
+          }
+        }
+      CODEBANK_SUBCOMMAND: mandatory
+    image: CODEBANK/init-postgresql:${CODEBANK_DOCKER_IMAGE_VERSION_INIT_POSTGRESQL:-1.1.1}
+    networks:
+      - CODEBANK
+    read_only: true
+    restart: on-failure
+
+  producer:
+#   For more information, visit https://github.com/richiebono/stream-producer
+    container_name: CODEBANK-stream-producer
+    depends_on:
+      - rabbitmq
+    environment:
+      CODEBANK_DEFAULT_DATA_SOURCE: TEST
+      CODEBANK_DELAY_IN_SECONDS: 15
+      CODEBANK_RABBITMQ_EXCHANGE: CODEBANK-rabbitmq-exchange
+      CODEBANK_RABBITMQ_HOST: CODEBANK-rabbitmq
+      CODEBANK_RABBITMQ_PASSWORD: bitnami
+      CODEBANK_RABBITMQ_QUEUE: CODEBANK-rabbitmq-queue
+      CODEBANK_RABBITMQ_ROUTING_KEY: CODEBANK.records
+      CODEBANK_RABBITMQ_USERNAME: user
+      CODEBANK_SUBCOMMAND: json-to-rabbitmq
+      CODEBANK_DEBUG: "true"
+      CODEBANK_MONITORING_PERIOD_IN_SECONDS: 60
+      CODEBANK_LOG_LEVEL: debug
+    image: CODEBANK/stream-producer:${CODEBANK_DOCKER_IMAGE_VERSION_STREAM_PRODUCER:-1.8.0}
+    networks:
+      - CODEBANK
+    read_only: true
+    restart: on-failure
+    user: 1000:1000
+    volumes:
+      - .:/var/opt/CODEBANK
+
+  pocserver:
+#   For more information, visit https://github.com/richiebono/CODEBANK-poc-server
+    container_name: CODEBANK-poc-server
+    depends_on:
+      - postgres
+    environment:
+      CODEBANK_API_SERVER_ALLOWED_ORIGINS: '*'
+      CODEBANK_API_SERVER_BIND_ADDR: 'all'
+      CODEBANK_API_SERVER_ENABLE_ADMIN: 'true'
+      CODEBANK_API_SERVER_PORT: '8250'
+      CODEBANK_API_SERVER_SKIP_ENGINE_PRIMING: 'true'
+      CODEBANK_API_SERVER_SKIP_STARTUP_PERF: 'true'
+      CODEBANK_ENGINE_CONFIGURATION_JSON: >-
+        {
+          "PIPELINE": {
+            "CONFIGPATH": "/etc/opt/CODEBANK",
+            "RESOURCEPATH": "/opt/CODEBANK/g2/resources",
+            "SUPPORTPATH": "/opt/CODEBANK/data"
+          },
+          "SQL": {
+            "BACKEND": "SQL",
+            "CONNECTION": "postgresql://postgres:postgres@CODEBANK-postgres:5432:G2/"
+          }
+        }
+      CODEBANK_RABBITMQ_LOAD_EXCHANGE: CODEBANK-rabbitmq-exchange
+      CODEBANK_RABBITMQ_LOAD_HOST: CODEBANK-rabbitmq
+      CODEBANK_RABBITMQ_LOAD_PASSWORD: bitnami
+      CODEBANK_RABBITMQ_LOAD_PORT: 5672
+      CODEBANK_RABBITMQ_LOAD_ROUTING_KEY: CODEBANK.records
+      CODEBANK_RABBITMQ_LOAD_USERNAME: user
+      CODEBANK_RABBITMQ_LOAD_VIRTUAL_HOST: "/"
+    image: CODEBANK/CODEBANK-poc-server:${CODEBANK_DOCKER_IMAGE_VERSION_CODEBANK_POC_SERVER:-3.2.2}
+    networks:
+      - CODEBANK
+    ports:
+      - 8250:8250
+    read_only: true
+    restart: always
+    tmpfs:
+      - /tmp
+
+  webapp:
+#   For more information, visit https://github.com/richiebono/entity-search-web-app
+    container_name: CODEBANK-webapp
+    depends_on:
+      - pocserver
+    environment:
+      CODEBANK_API_SERVER_URL: http://CODEBANK-poc-server:8250
+      CODEBANK_CONSOLE_SERVER_URL: ws://CODEBANK-webapp-console:8257
+      CODEBANK_WEB_SERVER_ADMIN_AUTH_MODE: NONE
+      CODEBANK_WEB_SERVER_ADMIN_AUTH_PATH: http://CODEBANK-webapp:8251
+      CODEBANK_WEB_SERVER_INTERNAL_URL: http://CODEBANK-webapp:8251
+      CODEBANK_WEB_SERVER_PORT: 8251
+      CODEBANK_WEB_SERVER_STREAM_CLIENT_URL: wss://CODEBANK-poc-server:8250/ws
+    image: CODEBANK/entity-search-web-app:${CODEBANK_DOCKER_IMAGE_VERSION_ENTITY_SEARCH_WEB_APP:-2.7.1}
+    networks:
+      - CODEBANK
+    ports:
+      - 8251:8251
+    read_only: true
+    restart: always
+
+  loader:
+#   For more information, visit https://github.com/richiebono/stream-loader
+    container_name: CODEBANK-stream-loader
+    depends_on:
+      - rabbitmq
+    environment:
+      LC_CTYPE: en_US.utf8
+      CODEBANK_DELAY_IN_SECONDS: 30
+      CODEBANK_ENGINE_CONFIGURATION_JSON: >-
+        {
+          "PIPELINE": {
+            "CONFIGPATH": "/etc/opt/CODEBANK",
+            "RESOURCEPATH": "/opt/CODEBANK/g2/resources",
+            "SUPPORTPATH": "/opt/CODEBANK/data"
+          },
+          "SQL": {
+            "BACKEND": "SQL",
+            "CONNECTION": "postgresql://postgres:postgres@CODEBANK-postgres:5432:G2/"
+          }
+        }
+      CODEBANK_MONITORING_PERIOD_IN_SECONDS: 60
+      CODEBANK_RABBITMQ_HOST: CODEBANK-rabbitmq
+      CODEBANK_RABBITMQ_PASSWORD: bitnami
+      CODEBANK_RABBITMQ_QUEUE: CODEBANK-rabbitmq-queue
+      CODEBANK_RABBITMQ_USE_EXISTING_ENTITIES: "False"
+      CODEBANK_RABBITMQ_USERNAME: user
+      CODEBANK_SUBCOMMAND: rabbitmq
+    image: CODEBANK/stream-loader:${CODEBANK_DOCKER_IMAGE_VERSION_STREAM_LOADER:-2.1.0}
+    networks:
+      - CODEBANK
+    read_only: true
+    restart: always
+
+  redoer:
+#   For more information, visit https://github.com/richiebono/redoer
+    container_name: CODEBANK-redoer
+    depends_on:
+      - loader
+    environment:
+      CODEBANK_DELAY_IN_SECONDS: 60
+      CODEBANK_ENGINE_CONFIGURATION_JSON: >-
+        {
+          "PIPELINE": {
+            "CONFIGPATH": "/etc/opt/CODEBANK",
+            "RESOURCEPATH": "/opt/CODEBANK/g2/resources",
+            "SUPPORTPATH": "/opt/CODEBANK/data"
+          },
+          "SQL": {
+            "BACKEND": "SQL",
+            "CONNECTION": "postgresql://postgres:postgres@CODEBANK-postgres:5432:G2/"
+          }
+        }
+      CODEBANK_EXIT_ON_THREAD_TERMINATION: "false"
+      CODEBANK_MONITORING_PERIOD_IN_SECONDS: 60
+      CODEBANK_SUBCOMMAND: redo
+    image: CODEBANK/redoer:${CODEBANK_DOCKER_IMAGE_VERSION_REDOER:-2.1.0}
+    networks:
+      - CODEBANK
+    read_only: true
+    restart: always
+
+networks:
+  CODEBANK:
+    name: CODEBANK-network

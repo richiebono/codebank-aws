@@ -1,0 +1,22 @@
+# Based on
+# - https://github.com/srggrs/assign-one-project-github-action
+
+name: Auto Assign issue to project
+
+on:
+  issues:
+    types:
+      - reopened
+      - opened
+env:
+  GITHUB_TOKEN: ${{ secrets.CODEBANK_GITHUB_ACCESS_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Assign issues to project
+      uses: CodeBank/github-action-add-issue-to-project@main
+      with:
+        project: 'https://github.com/orgs/richiebono/projects/2'
+        column_name: 'Backlog'

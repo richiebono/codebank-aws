@@ -1,6 +1,6 @@
 [<img src="../img/nestjs.svg" width="72"/>](Nest.js)
 
-# Imersão Full Stack & FullCycle 9.0 - Codebank - Back-end da loja
+# Codebank - Back-end da loja
 
 ## Descrição
 

@@ -1,0 +1,191 @@
+{
+    "arey/mysql-client": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_AREY_MYSQL_CLIENT"
+    },
+    "bitnami/bitnami-shell": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_SHELL"
+    },
+    "bitnami/kafka": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_KAFKA"
+    },
+    "bitnami/mysql": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_MYSQL"
+    },
+    "bitnami/nginx": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_NGINX"
+    },
+    "bitnami/nginx-ingress-controller": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_NGINX_INGRESS_CONTROLLER"
+    },
+    "bitnami/phpmyadmin": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_PHPMYADMIN"
+    },
+    "bitnami/phppgadmin": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_PHPPGADMIN"
+    },
+    "bitnami/postgresql": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_POSTGRESQL"
+    },
+    "bitnami/rabbitmq": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_RABBITMQ"
+    },
+    "bitnami/zookeeper": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BITNAMI_ZOOKEEPER"
+    },
+    "busybox": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_BUSYBOX"
+    },
+    "coleifer/sqlite-web": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_SQLITE_WEB"
+    },
+    "confluentinc/cp-kafka": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_CONFLUENTINC_CP_KAFKA"
+    },
+    "dpage/pgadmin4": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_DPAGE_PGADMIN4"
+    },
+    "elasticsearch": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_ELASTICSEARCH"
+    },
+    "ibmcom/db2": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_IBMCOM_DB2"
+    },
+    "kibana": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_KIBANA"
+    },
+    "logstash": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_LOGSTASH"
+    },
+    "mcr.microsoft.com/mssql-tools": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_MSSQL_TOOLS"
+    },
+    "mcr.microsoft.com/mssql/server": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_MSSQL_SERVER"
+    },
+    "obsidiandynamics/kafdrop": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_OBSIDIANDYNAMICS_KAFDROP"
+    },
+    "portainer/portainer": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_PORTAINER"
+    },
+    "portainer/portainer-ce": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_PORTAINER_CE"
+    },
+    "codebank/adminer": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_ADMINER"
+    },
+    "codebank/apt": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_APT"
+    },
+    "codebank/aptdownloader": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_APT_DOWNLOADER"
+    },
+    "codebank/configurator": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_CONFIGURATOR"
+    },
+    "codebank/data-encryption-aes256cbc-sample": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_DATA_ENCRYPTION_AES256CBC_SAMPLE"
+    },
+    "codebank/db2-driver-installer": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_DB2_DRIVER_INSTALLER"
+    },
+    "codebank/docker-compose-air-gapper": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_DOCKER_COMPOSE_AIR_GAPPER"
+    },
+    "codebank/dockerhub-util": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_DOCKERHUB_UTIL"
+    },
+    "codebank/entity-search-web-app": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_ENTITY_SEARCH_WEB_APP"
+    },
+    "codebank/entity-search-web-app-console": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_ENTITY_SEARCH_WEB_APP_CONSOLE"
+    },
+    "codebank/g2command": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_G2COMMAND"
+    },
+    "codebank/g2configtool": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_G2CONFIGTOOL"
+    },
+    "codebank/g2loader": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_G2LOADER"
+    },
+    "codebank/ibm-db2": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_IBM_DB2"
+    },
+    "codebank/init-container": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_INIT_CONTAINER"
+    },
+    "codebank/init-postgresql": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_INIT_POSTGRESQL"
+    },
+    "codebank/jupyter": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_JUPYTER"
+    },
+    "codebank/phppgadmin": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_PHPPGADMIN"
+    },
+    "codebank/postgresql-client": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_POSTGRESQL_CLIENT"
+    },
+    "codebank/python-demo": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_PYTHON_DEMO"
+    },
+    "codebank/redoer": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_REDOER"
+    },
+    "codebank/resolver": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_RESOLVER"
+    },
+    "codebank/risk-score-calculator": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_RISK_SCORE_CALCULATOR"
+    },
+    "codebank/senzing-api-server": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_CODEBANK_API_SERVER"
+    },
+    "codebank/senzing-base": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_CODEBANK_BASE"
+    },
+    "codebank/senzing-console": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_CODEBANK_CONSOLE"
+    },
+    "codebank/senzing-listener": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_CODEBANK_LISTENER"
+    },
+    "codebank/senzing-poc-server": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_CODEBANK_POC_SERVER"
+    },
+    "codebank/senzingapi-runtime": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_CODEBANKAPI_RUNTIME"
+    },
+    "codebank/senzingapi-tools": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_CODEBANKAPI_TOOLS"
+    },
+    "codebank/sshd": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_SSHD"
+    },
+    "codebank/stream-loader": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_STREAM_LOADER"
+    },
+    "codebank/stream-logger": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_STREAM_LOGGER"
+    },
+    "codebank/stream-producer": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_STREAM_PRODUCER"
+    },
+    "codebank/web-app-demo": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_WEB_APP_DEMO"
+    },
+    "codebank/xterm": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_XTERM"
+    },
+    "codebank/yum": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_YUM"
+    },
+    "codebank/yumdownloader": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_YUM_DOWNLOADER"
+    },
+    "swaggerapi/swagger-ui": {
+        "environment_variable": "CODEBANK_DOCKER_IMAGE_VERSION_SWAGGERAPI_SWAGGER_UI"
+    }
+}
